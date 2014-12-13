@@ -11,3 +11,8 @@ body {
     margin-right: 10px;
 }
 
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.invalid {
+	border: 1px solid #FF0000;
+}

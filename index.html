@@ -9,7 +9,7 @@
     </head>
     <body>
 
-        <main class="container">
+        <main class="container" ng-app="myModule" ng-controller="commentController">
             <section>
                 <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
                 <h1>The Super Bass-o-Matic '76</h1>
@@ -26,6 +26,25 @@
                 http://angular-ui.github.io/bootstrap/#/rating
                 their script file is included below
                 -->
+                <form id="comments" ng-submit="addComment(newName, new Title, newComment)">
+                    <div ng-controller="RatingCtrl">
+                        <label>Rating</label>
+                        <rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                        <pre style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></pre>
+                    </div>
+                    <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="your name (required)" ng-model="newName" autofocus>
+                    <label for="title">Title</label>
+                        <input type="text" name="title" id="title" class="form-control" placeholder="title for the comment (required)" ng-model="newTitle" >
+                    <label for="comment">Comment</label>
+                        <input type="text" name="comment" id="comment" class="form-control" placeholder="comments (required)" ng-model="newComment">
+                    <div class="form-group">
+                        <button type="submit" ng-disabled="inserting">Submit</button>
+                        <img src="img/ajax-spinner.gif" alt="loading animation" ng-if="inserting">
+                    </div>
+                </form>
+                
             </section>
 
             <section>
@@ -43,5 +62,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.2/angular.min.js"></script>
         <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
         <script src="js/app.js"></script>
+        <script></script>
     </body>
 </html>
